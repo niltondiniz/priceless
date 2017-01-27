@@ -64,6 +64,8 @@ namespace Priceless.iOS
 				tipoLogin = "google";
 			}
 
+			//Teste
+
 			if (auth != null)
 			{
 				auth.Completed += async (sender, eventArgs) =>
