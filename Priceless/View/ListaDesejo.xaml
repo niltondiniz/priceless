@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Priceless;assembly=Priceless" x:Class="Priceless.ListaDesejo">
+	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout BackgroundColor="#E91E63">
+				<SearchBar Placeholder="O que você deseja?..." Text="{Binding Filtro}" HeightRequest="50" TextColor="White" PlaceholderColor="White" />
+			</StackLayout>
+			<ListView x:Name="list" ItemsSource="{Binding ListaFiltrada}" HasUnevenRows="True">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<local:CardView HeightRequest="40">
+								<StackLayout>
+									<StackLayout Orientation="Horizontal">
+										<Switch IsToggled="false" />
+										<Label VerticalOptions="EndAndExpand" Text="{Binding Nome}" FontSize="20" HorizontalTextAlignment="Start" />
+									</StackLayout>
+								</StackLayout>
+							</local:CardView>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

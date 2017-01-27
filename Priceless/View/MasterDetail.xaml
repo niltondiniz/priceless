@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage Title="Priceless" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Priceless" x:Class="Priceless.MasterDetail" MasterBehavior="Popover" xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+	<MasterDetailPage.Master>
+		<ContentPage Title="Default" Padding="10">
+			<StackLayout>
+				<controls:CircleImage Source="{Binding Imagem}" Aspect="AspectFit" BorderThickness="2" BorderColor="Gray">
+					<controls:CircleImage.WidthRequest>
+						<OnPlatform x:TypeArguments="x:Double" iOS="55" Android="75" WinPhone="75" />
+					</controls:CircleImage.WidthRequest>
+					<controls:CircleImage.HeightRequest>
+						<OnPlatform x:TypeArguments="x:Double" iOS="55" Android="75" WinPhone="75" />
+					</controls:CircleImage.HeightRequest>
+				</controls:CircleImage>
+				<Label HorizontalTextAlignment="Center" FontAttributes="Bold" Text="{Binding Name}" />
+			</StackLayout>
+		</ContentPage>
+	</MasterDetailPage.Master>
+	<MasterDetailPage.Detail>
+		<TabbedPage x:Name="Abas">
+			<TabbedPage.Children>
+				<local:ListaPromocao x:Name="PromocaoPage" Title="Promoções" Icon="promocao.png" />
+				<local:ListaCompra x:Name="CompraPage" Title="Compras" Icon="cart.png" />
+				<local:ListaDesejo x:Name="DesejoPage" Title="Desejos" Icon="desejo.png" />
+				<ContentPage Title="Notificações" Icon="notificacao.png" />
+			</TabbedPage.Children>
+		</TabbedPage>
+	</MasterDetailPage.Detail>
+</MasterDetailPage>

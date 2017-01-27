@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pages="clr-namespace:Xamarin.Forms.Pages;assembly=Xamarin.Forms.Pages" xmlns:local="clr-namespace:Priceless;assembly=Priceless" x:Class="Priceless.ListaPromocao" Title="Promoções">
+	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout BackgroundColor="#E91E63">
+				<SearchBar Placeholder="Digite o que procura..." Text="{Binding Filtro}" HeightRequest="50" TextColor="White" PlaceholderColor="White" />
+			</StackLayout>
+			<ListView x:Name="ListPromocao" ItemsSource="{Binding ListaFiltrada}" SeparatorVisibility="None" HasUnevenRows="true" IsPullToRefreshEnabled="true">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<local:CardView HeightRequest="320">
+								<StackLayout Orientation="Vertical">
+									<StackLayout Orientation="Horizontal">
+										<Image VerticalOptions="Start" Source="{Binding SupermercadoImagem}" HeightRequest="40" WidthRequest="40" />
+									</StackLayout>
+									<Image VerticalOptions="Start" Source="{Binding Imagem}" HeightRequest="90" WidthRequest="90" />
+									<Label VerticalOptions="EndAndExpand" Text="{Binding Nome}" FontSize="30" HorizontalTextAlignment="Start" />
+									<Label VerticalOptions="EndAndExpand" Text="{Binding DataExpiraPromo}" />
+									<Label VerticalOptions="EndAndExpand" Text="{Binding ValorPromocionalDouble, StringFormat='{0:C2}'}" />
+									<Button HorizontalOptions="FillAndExpand" Text="Adicionar a Lista de Compras" TextColor="White" BackgroundColor="#448AFF" CommandParameter="{Binding Imagem}" Clicked="AddListaCompra" />
+								</StackLayout>
+							</local:CardView>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
