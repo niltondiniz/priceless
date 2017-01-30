@@ -15,9 +15,12 @@ namespace Priceless
 		public SettingsViewModel settingsViewModel;
 		public Settings settings { get; set; }
 
-		public async static Task HideLoginView()
+		public static Action HideLoginView
 		{
-			await App.Current.MainPage.Navigation.PopAsync();
+			get
+			{
+				return new Action(() => App.Current.MainPage.Navigation.PopModalAsync());
+			}
 		}
 
 		public async static Task NavigateToMain()
@@ -60,7 +63,16 @@ namespace Priceless
 			settings = new Settings();
 
 			NavigationPage MainPageLocal = null;
-			MainPage = new NavigationPage(new MasterDetail());
+			var nav = new NavigationPage(new MasterDetail());
+
+			Resources = new ResourceDictionary();
+			Resources.Add("primaryPink", Color.FromHex("E91E63"));
+			Resources.Add("primaryDarkPink", Color.FromHex("C2185B"));
+
+			nav.BarBackgroundColor = (Color)App.Current.Resources["primaryPink"];
+			nav.BarTextColor = Color.White;
+
+			MainPage = nav;
 
 			settings = settingsViewModel.GetSettings();
 

@@ -36,7 +36,7 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: niltondiniz@niltondiniz.com (93JL74NV9C)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
@@ -165,6 +165,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_72.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -193,13 +195,15 @@
     <Content Include="Resources\facebook_logo.png" />
     <Content Include="Resources\fundo.png" />
     <Content Include="Resources\google.png" />
-    <Content Include="Resources\icon.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\logo_transparente.png" />
     <Content Include="Resources\notificacao.png" />
     <Content Include="Resources\priceless.png" />
     <Content Include="Resources\promocao.png" />
     <Content Include="Resources\fundo_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

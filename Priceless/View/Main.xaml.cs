@@ -14,13 +14,13 @@ namespace Priceless
 			this.btnLogarFacebook.Clicked += async (sender, e) =>
 			{
 				((App)App.Current).tipoAuth = "facebook";
-				await Navigation.PushAsync(new Login());
+				await this.Navigation.PushAsync(new Login());
 			};
 
 			this.btnLogarGoogle.Clicked += async (sender, e) =>
 			{
 				((App)App.Current).tipoAuth = "google";
-				await Navigation.PushAsync(new Login());
+				await ((App)App.Current).MainPage.Navigation.PushAsync(new Login());
 			};
 
 			NavigationPage.SetHasBackButton(this, false);

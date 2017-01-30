@@ -84,6 +84,9 @@ namespace Priceless.iOS
 							((App)App.Current).settings.Imagem = localPath;
 							((App)App.Current).settingsViewModel.Gravar();
 							((App)App.Current).NotificaSettings(((App)App.Current).settings);
+							DismissViewController(true, null);
+							App.HideLoginView();
+							((App)App.Current).MainPage.Navigation.PopToRootAsync();
 						};
 
 						//Pegando as infos do perfil
@@ -115,15 +118,14 @@ namespace Priceless.iOS
 							webClient.DownloadDataAsync(new Uri(((App)App.Current).settings.Imagem));
 
 							//Gravando usuario na api Priceless
-							await ((App)App.Current).usuarioViewModel.CriarUsuario(
+							((App)App.Current).usuarioViewModel.CriarUsuario(
 								((App)App.Current).settings.Name,
 								((App)App.Current).settings.Email,
 								((App)App.Current).settings.AccessToken
 							);
 
 							//Voltando 2 niveis
-							await App.Current.MainPage.Navigation.PopAsync();
-							await App.Current.MainPage.Navigation.PopAsync();
+							//((App)App.Current).MainPage.Navigation.PopToRootAsync();
 
 						}
 

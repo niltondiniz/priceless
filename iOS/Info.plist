@@ -28,17 +28,17 @@
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
-  		<dict>
-  		<key>CFBundleURLSchemes</key>
-  		<array>
-    			<string>fb725451004148227</string>
-  		</array>
-  	</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb725451004148227</string>
+			</array>
+		</dict>
 	</array>
-		<key>FacebookAppID</key>
-		<string>725451004148227</string>
-		<key>FacebookDisplayName</key>
-		<string>TrackBus</string>
+	<key>FacebookAppID</key>
+	<string>725451004148227</string>
+	<key>FacebookDisplayName</key>
+	<string>TrackBus</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -52,8 +52,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -63,5 +61,9 @@
 	<string>LaunchScreen</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>

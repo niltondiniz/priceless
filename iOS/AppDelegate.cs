@@ -14,12 +14,14 @@ namespace Priceless.iOS
 			global::Xamarin.Forms.Forms.Init();
 			ImageCircleRenderer.Init();
 
+
+
 			LoadApplication(new App());
 
 			try
 			{
-				//((App)App.Current).produtoViewModel.GetProdutos();
-				//((App)App.Current).desejoViewModel.GetListaDesejos();
+				((App)App.Current).produtoViewModel.GetProdutos();
+				((App)App.Current).desejoViewModel.GetListaDesejos();
 
 			}
 			catch (Exception e)
@@ -29,7 +31,7 @@ namespace Priceless.iOS
 
 			return base.FinishedLaunching(app, options);
 
-			var y = typeof(Xamarin.Forms.Themes.LightThemeResources);
+			//var y = typeof(Xamarin.Forms.Themes.LightThemeResources);
 			var z = typeof(Xamarin.Forms.Themes.iOS.UnderlineEffect);
 		}
 	}

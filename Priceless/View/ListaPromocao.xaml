@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout>
 			<StackLayout BackgroundColor="#E91E63">
-				<SearchBar Placeholder="Digite o que procura..." Text="{Binding Filtro}" HeightRequest="50" TextColor="White" PlaceholderColor="White" />
+				<SearchBar BackgroundColor="#E91E63" Placeholder="Digite o que procura..." Text="{Binding Filtro}" HeightRequest="50" TextColor="Gray" PlaceholderColor="Gray" />
 			</StackLayout>
 			<ListView x:Name="ListPromocao" ItemsSource="{Binding ListaFiltrada}" SeparatorVisibility="None" HasUnevenRows="true" IsPullToRefreshEnabled="true">
 				<ListView.ItemTemplate>
