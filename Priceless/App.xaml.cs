@@ -2,6 +2,7 @@
 
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Plugin.Geolocator;
 
 namespace Priceless
 {
@@ -94,6 +95,8 @@ namespace Priceless
 			else {
 				MainPage.Navigation.PushAsync(new Main());
 			}
+
+
 		}
 	}
 }

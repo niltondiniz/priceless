@@ -226,7 +226,7 @@ namespace Priceless
 
 		public void AtualizaLista()
 		{
-			var lista = new ObservableCollection<ProdutoCompra>(this.Listar());
+			var lista = new ObservableCollection<ProdutoCompra>(this.GetLista<ProdutoCompra>());
 
 			if (this.ListaCompra != null)
 				this.ListaCompra.Clear();

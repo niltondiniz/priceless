@@ -22,6 +22,7 @@ namespace Priceless.iOS
 			{
 				((App)App.Current).produtoViewModel.GetProdutos();
 				((App)App.Current).desejoViewModel.GetListaDesejos();
+				((App)App.Current).settingsViewModel.CidadeAtual();
 
 			}
 			catch (Exception e)

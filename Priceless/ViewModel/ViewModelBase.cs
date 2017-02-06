@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -11,8 +8,6 @@ namespace Priceless
 	public class ViewModelBase : IDisposable
 	{
 		private SQLite.Net.SQLiteConnection _conexao;
-
-		private Dictionary<string, object> properties = new Dictionary<string, object>();
 
 		public void Dispose()
 		{
@@ -38,7 +33,6 @@ namespace Priceless
 			return lista;
 		}
 
-
 		public Settings GetSettings()
 		{
 			try
@@ -58,6 +52,12 @@ namespace Priceless
 				return null;
 			}
 
+		}
+
+		public List<T> GetLista<T>() where T : class
+		{
+			var lista = _conexao.Table<T>().ToList();
+			return lista;
 		}
 
 		public void Delete<T>(object objeto)

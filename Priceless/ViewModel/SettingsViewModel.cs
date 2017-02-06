@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace Priceless
 {
@@ -145,6 +147,21 @@ namespace Priceless
 			{
 				this.Update<Settings>(((App)App.Current).settings);
 			}
+		}
+
+		public async Task CidadeAtual()
+		{
+			try
+			{
+				dynamic gpsResult = JObject.Parse(await GpsLocation.GetCurrentLocation());
+				((App)App.Current).settingsViewModel.City = gpsResult.results[0].address_components[3].long_name;
+			}
+			catch
+			{
+				((App)App.Current).settingsViewModel.City = "Local Desconhecido";
+			}
+
+
 		}
 
 	}

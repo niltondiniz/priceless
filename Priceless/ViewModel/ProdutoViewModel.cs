@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plugin.Connectivity;
+using Plugin.Geolocator;
 using Xamarin.Forms;
 
 namespace Priceless
@@ -262,39 +264,19 @@ namespace Priceless
 		{
 			try
 			{
-
-				//if (CrossConnectivity.Current.IsConnected)
-				//{
-
-				var client = new System.Net.Http.HttpClient();
-				client.BaseAddress = new Uri("http://priceless2m.herokuapp.com/");
-				var response = await client.GetAsync("api/busca_produtos/W88oZcUg4dTN1dyc07DWD9kRIOUwcPHGSlHuGR47");
-				string dadosJson = response.Content.ReadAsStringAsync().Result;
-
-				//dynamic jsonObj = JObject.Parse(dadosJson);
-				ListaProdutos = new ObservableCollection<Produto>((List<Produto>)JsonConvert.DeserializeObject(dadosJson, typeof(List<Produto>)));
+				var resultado = await RequestClient.GetRequest("http://priceless2m.herokuapp.com/", "api/busca_produtos/W88oZcUg4dTN1dyc07DWD9kRIOUwcPHGSlHuGR47");
+				ListaProdutos = new ObservableCollection<Produto>((List<Produto>)JsonConvert.DeserializeObject(resultado, typeof(List<Produto>)));
 				ListaFiltrada = ListaProdutos;
-
-				if (ListaProdutos.Count > 0)
-				{
-
-					foreach (Produto produto in ListaProdutos)
-					{
-						//ListaSupermercados.Add(produto.ObjSupermercado);
-					}
-				}
-
 			}
 			catch (Exception e)
 			{
-				//Debug.WriteLine(e.Message);
+				Debug.WriteLine(e.Message);
 			}
 		}
 
 		public ProdutoViewModel()
 		{
+
 		}
-
-
 	}
 }
