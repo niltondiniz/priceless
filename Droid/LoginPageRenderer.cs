@@ -8,7 +8,6 @@ using Priceless;
 
 using System.Net;
 using System.IO;
-using System.Text;
 using System.Globalization;
 
 [assembly: ExportRenderer(typeof(Login), typeof(Priceless.Droid.LoginPageRenderer))]
@@ -81,7 +80,7 @@ namespace Priceless.Droid
 							File.WriteAllBytes(localPath, bytes);
 							((App)App.Current).settings.Imagem = localPath;
 							((App)App.Current).settingsViewModel.Gravar();
-							((App)App.Current).NotificaSettings(((App)App.Current).settings);
+							((App)App.Current).HideLoginView();
 						};
 
 						//Pegando as infos do perfil
@@ -119,15 +118,11 @@ namespace Priceless.Droid
 								((App)App.Current).settings.AccessToken
 							);
 
-							//Voltando 2 niveis
-							await App.Current.MainPage.Navigation.PopAsync();
-							await App.Current.MainPage.Navigation.PopAsync();
-
 						}
 
 					}
 					else {
-						await App.Current.MainPage.Navigation.PopAsync();
+						((App)App.Current).NavigateToMain();
 					}
 				};
 			}

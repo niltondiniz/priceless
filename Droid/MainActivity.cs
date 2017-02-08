@@ -30,17 +30,17 @@ namespace Priceless.Droid
 
 			try
 			{
-				Snackbar.Make(view, "Aguarde carregando...", Snackbar.LengthLong).Show();
-				await ((App)App.Current).produtoViewModel.GetProdutos();
-				await ((App)App.Current).desejoViewModel.GetListaDesejos();
-				await ((App)App.Current).settingsViewModel.CidadeAtual();
-				Snackbar.Make(view, "Pronto!", Snackbar.LengthLong).Show();
+				//Snackbar.Make(view, "Aguarde carregando...", Snackbar.LengthLong).Show();
+				//await ((App)App.Current).produtoViewModel.GetProdutos();
+				//await ((App)App.Current).desejoViewModel.GetListaDesejos();
+				//await ((App)App.Current).settingsViewModel.CidadeAtual();
+				//Snackbar.Make(view, "Pronto!", Snackbar.LengthLong).Show();
 				//Snackbar.Make(view, CrossPushNotification.SenderId, Snackbar.LengthLong).Show();
 			}
 			catch (Exception e)
 			{
 				Log.Debug("X", "Exceção gerada em: {0}", e.Message);
-			} 
+			}
 
 
 			//var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);

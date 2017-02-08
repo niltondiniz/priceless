@@ -16,17 +16,14 @@ namespace Priceless
 		public SettingsViewModel settingsViewModel;
 		public Settings settings { get; set; }
 
-		public static Action HideLoginView
+		public void HideLoginView()
 		{
-			get
-			{
-				return new Action(() => App.Current.MainPage.Navigation.PopModalAsync());
-			}
+			Current.MainPage.Navigation.PopToRootAsync();
 		}
 
-		public async static Task NavigateToMain()
+		public void NavigateToMain()
 		{
-			await App.Current.MainPage.Navigation.PushAsync(new Main());
+			Current.MainPage.Navigation.PushAsync(new Main());
 		}
 
 		public async static Task NavigateToProfile(string message)
@@ -34,10 +31,21 @@ namespace Priceless
 			await App.Current.MainPage.Navigation.PushAsync(new Profile(message));
 		}
 
-		public async static Task NavigateToHome()
+		public void NavigateToHome()
 		{
+			//var nav = new NavigationPage(new MasterDetail());
+			//nav.BarBackgroundColor = (Color)App.Current.Resources["primaryPink"];
+			//nav.BarTextColor = Color.White;
+			//MainPage = nav;
 
-			await App.Current.MainPage.Navigation.PushAsync(new MasterDetail());
+			//MainPage = null;
+			MainPage = new NavigationPage(new MasterDetail());
+			//MainPage.BarBackgroundColor = (Color)App.Current.Resources["primaryPink"];
+
+			((App)App.Current).produtoViewModel.GetProdutos();
+			((App)App.Current).desejoViewModel.GetListaDesejos();
+			((App)App.Current).settingsViewModel.CidadeAtual();
+
 		}
 
 		public void NotificaSettings(Settings _settings)
@@ -63,37 +71,39 @@ namespace Priceless
 			settingsViewModel = new SettingsViewModel();
 			settings = new Settings();
 
-			NavigationPage MainPageLocal = null;
-			var nav = new NavigationPage(new MasterDetail());
-
 			Resources = new ResourceDictionary();
 			Resources.Add("primaryPink", Color.FromHex("E91E63"));
 			Resources.Add("primaryDarkPink", Color.FromHex("C2185B"));
 
-			nav.BarBackgroundColor = (Color)App.Current.Resources["primaryPink"];
-			nav.BarTextColor = Color.White;
+			NavigateToHome();
 
-			MainPage = nav;
-
-			settings = settingsViewModel.GetSettings();
+			try
+			{
+				settings = settingsViewModel.GetLista<Settings>()[0];
+			}
+			catch
+			{
+				settings = null;
+			}
 
 			if (settings != null)
 			{
 				var expiraEm = settings.ExpirinDate;
 				if (expiraEm <= DateTime.Now)
 				{
-					MainPage.Navigation.PushAsync(new Main());
+					NavigateToMain();
 				}
-				else {
+				/*else
+				{
 					if ((settings != null) && (settings.Name != null))
 					{
-						MainPageLocal = new NavigationPage(new MasterDetail());
+						NavigateToHome();
 					}
-				}
+				}*/
 				NotificaSettings(this.settings);
 			}
 			else {
-				MainPage.Navigation.PushAsync(new Main());
+				NavigateToMain();
 			}
 
 

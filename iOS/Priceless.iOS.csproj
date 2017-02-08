@@ -197,6 +197,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="LoginPageRenderer.cs" />
+    <Compile Include="CloseApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

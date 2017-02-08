@@ -39,6 +39,7 @@
 				</ListView.ItemTemplate>
 			</ListView>
 			<StackLayout HorizontalOptions="FillAndExpand" Padding="16" HeightRequest="20" BackgroundColor="#E91E63" Orientation="Horizontal">
+				<Button Text="Limpar Lista" Clicked="LimpaLista" HorizontalOptions="Start" />
 				<Label Text="{Binding Total, StringFormat='Total: {0:C2}'}" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="EndAndExpand" />
 			</StackLayout>
 		</StackLayout>

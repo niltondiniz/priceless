@@ -20,6 +20,7 @@
 				</StackLayout>
 				<StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
 					<Label Text="Sair do Priceless" />
+					<Button Image="marker.png" Text="Sair" Clicked="Sair" />
 				</StackLayout>
 			</StackLayout>
 		</ContentPage>

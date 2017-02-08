@@ -102,6 +102,7 @@
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="Helper\RequestClient.cs" />
     <Compile Include="Helper\GpsLocation.cs" />
+    <Compile Include="ICloseApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernHttpClient">

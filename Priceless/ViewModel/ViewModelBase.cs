@@ -27,33 +27,6 @@ namespace Priceless
 			_conexao.Insert((T)objeto);
 		}
 
-		public List<ProdutoCompra> Listar()
-		{
-			var lista = _conexao.Table<ProdutoCompra>().ToList();
-			return lista;
-		}
-
-		public Settings GetSettings()
-		{
-			try
-			{
-				var settings = _conexao.Table<Settings>().ToList();
-				if (settings != null)
-				{
-					return settings[0];
-				}
-				else
-				{
-					return null;
-				}
-			}
-			catch (Exception e)
-			{
-				return null;
-			}
-
-		}
-
 		public List<T> GetLista<T>() where T : class
 		{
 			var lista = _conexao.Table<T>().ToList();
@@ -63,6 +36,11 @@ namespace Priceless
 		public void Delete<T>(object objeto)
 		{
 			_conexao.Delete(objeto);
+		}
+
+		public void DeleteAll<T>()
+		{
+			_conexao.DeleteAll<T>();
 		}
 
 		public void Update<T>(object objeto)

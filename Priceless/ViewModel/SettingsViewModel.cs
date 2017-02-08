@@ -139,14 +139,10 @@ namespace Priceless
 
 		public void Gravar()
 		{
-			if (this.GetSettings() == null)
-			{
+			if (((App)App.Current).settings != null)
 				this.Insert<Settings>(((App)App.Current).settings);
-			}
 			else
-			{
 				this.Update<Settings>(((App)App.Current).settings);
-			}
 		}
 
 		public async Task CidadeAtual()

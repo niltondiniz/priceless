@@ -309,5 +309,6 @@ namespace Priceless
 			SupermercadoImagem = "";
 
 		}
+
 	}
 }
