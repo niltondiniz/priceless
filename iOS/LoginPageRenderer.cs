@@ -64,8 +64,6 @@ namespace Priceless.iOS
 				tipoLogin = "google";
 			}
 
-			//Teste
-
 			if (auth != null)
 			{
 				auth.Completed += async (sender, eventArgs) =>
@@ -83,10 +81,7 @@ namespace Priceless.iOS
 							File.WriteAllBytes(localPath, bytes);
 							((App)App.Current).settings.Imagem = localPath;
 							((App)App.Current).settingsViewModel.Gravar();
-							((App)App.Current).NotificaSettings(((App)App.Current).settings);
-							DismissViewController(true, null);
-							App.HideLoginView();
-							((App)App.Current).MainPage.Navigation.PopToRootAsync();
+							((App)App.Current).HideLoginView();
 						};
 
 						//Pegando as infos do perfil
@@ -118,20 +113,17 @@ namespace Priceless.iOS
 							webClient.DownloadDataAsync(new Uri(((App)App.Current).settings.Imagem));
 
 							//Gravando usuario na api Priceless
-							((App)App.Current).usuarioViewModel.CriarUsuario(
+							await ((App)App.Current).usuarioViewModel.CriarUsuario(
 								((App)App.Current).settings.Name,
 								((App)App.Current).settings.Email,
 								((App)App.Current).settings.AccessToken
 							);
 
-							//Voltando 2 niveis
-							//((App)App.Current).MainPage.Navigation.PopToRootAsync();
-
 						}
 
 					}
 					else {
-						await App.Current.MainPage.Navigation.PopAsync();
+						((App)App.Current).NavigateToMain();
 					}
 				};
 			}

@@ -15,36 +15,38 @@ namespace Priceless
 		public DesejoViewModel desejoViewModel;
 		public SettingsViewModel settingsViewModel;
 		public Settings settings { get; set; }
+		public Page mainNavigation { get; set; }
 
 		public void HideLoginView()
 		{
-			Current.MainPage.Navigation.PopToRootAsync();
+			if (mainNavigation != null)
+			{
+				mainNavigation.Navigation.PopToRootAsync();
+				this.NavigateToHome();
+			}
+				
 		}
 
 		public void NavigateToMain()
 		{
-			Current.MainPage.Navigation.PushAsync(new Main());
+			if (mainNavigation != null)
+				mainNavigation.Navigation.PushAsync(new Main());
 		}
 
-		public async static Task NavigateToProfile(string message)
+		public void NavigateToLogin()
 		{
-			await App.Current.MainPage.Navigation.PushAsync(new Profile(message));
+			if (mainNavigation != null)
+				mainNavigation.Navigation.PushAsync(new Login());
 		}
 
 		public void NavigateToHome()
 		{
-			//var nav = new NavigationPage(new MasterDetail());
-			//nav.BarBackgroundColor = (Color)App.Current.Resources["primaryPink"];
-			//nav.BarTextColor = Color.White;
-			//MainPage = nav;
-
-			//MainPage = null;
-			MainPage = new NavigationPage(new MasterDetail());
-			//MainPage.BarBackgroundColor = (Color)App.Current.Resources["primaryPink"];
+			MainPage = new MasterDetail();
 
 			((App)App.Current).produtoViewModel.GetProdutos();
 			((App)App.Current).desejoViewModel.GetListaDesejos();
 			((App)App.Current).settingsViewModel.CidadeAtual();
+			((App)App.Current).NotificaSettings(((App)App.Current).settings);
 
 		}
 
@@ -75,8 +77,6 @@ namespace Priceless
 			Resources.Add("primaryPink", Color.FromHex("E91E63"));
 			Resources.Add("primaryDarkPink", Color.FromHex("C2185B"));
 
-			NavigateToHome();
-
 			try
 			{
 				settings = settingsViewModel.GetLista<Settings>()[0];
@@ -86,27 +86,9 @@ namespace Priceless
 				settings = null;
 			}
 
-			if (settings != null)
-			{
-				var expiraEm = settings.ExpirinDate;
-				if (expiraEm <= DateTime.Now)
-				{
-					NavigateToMain();
-				}
-				/*else
-				{
-					if ((settings != null) && (settings.Name != null))
-					{
-						NavigateToHome();
-					}
-				}*/
-				NotificaSettings(this.settings);
-			}
-			else {
-				NavigateToMain();
-			}
-
+			NavigateToHome();
 
 		}
+
 	}
 }

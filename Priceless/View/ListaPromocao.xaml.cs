@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
-using Xamarin.Forms.Pages;
 
 namespace Priceless
 {
@@ -47,6 +43,13 @@ namespace Priceless
 			((App)App.Current).produtoCompraViewModel.Total = ((App)App.Current).produtoCompraViewModel.TotalCompra();
 			DisplayAlert("Sucesso!", "Item adicionado a lista de compras", "Ok");
 
+		}
+
+		public void ShareItem(object sender, EventArgs e)
+		{
+			Image img = new Image();
+			img.Source = "https://static.adzerk.net/Advertisers/33d63a87eb0144dbb2039b21b8d72587.png";
+			MessagingCenter.Send<ImageSource>(img.Source, "Share");
 		}
 	}
 }

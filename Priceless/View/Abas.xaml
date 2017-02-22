@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:local="clr-namespace:Priceless;assembly=Priceless" 
+		x:Class="Priceless.Abas"
+		>
+	
+	<TabbedPage.Children >
+		<!--<NavigationPage Title="Promoções" Icon="promocao.png" > 
+			<x:Arguments>-->
+				<local:ListaPromocao Title="Promoções" Icon="promocao.png" />
+			<!--</x:Arguments>
+		</NavigationPage>
+		<NavigationPage Title="Compras" Icon="cart.png" >
+			<x:Arguments>-->
+				<local:ListaCompra Title="Compras" Icon="cart.png"/>
+			<!--</x:Arguments>
+		</NavigationPage>
+		<NavigationPage Title="Desejos" Icon="desejo.png" >
+			<x:Arguments>-->
+				<local:ListaDesejo Title="Desejos" Icon="desejo.png"/>
+			<!--</x:Arguments>
+		</NavigationPage>-->
+		<ContentPage Title="Notificações" Icon="notificacao.png" />
+	</TabbedPage.Children>
+</TabbedPage>

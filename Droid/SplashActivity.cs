@@ -6,15 +6,12 @@ using Android.Support.V7.App;
 
 namespace Priceless.Droid
 {
-	[Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+	[Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 	public class SplashActivity : AppCompatActivity
 	{
-		static readonly string TAG = "X:" + typeof(SplashActivity).Name;
-
 		public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
 		{
 			base.OnCreate(savedInstanceState, persistentState);
-			//Log.Debug(TAG, "SplashActivity.OnCreate");
 		}
 
 		protected override void OnResume()
@@ -23,14 +20,11 @@ namespace Priceless.Droid
 
 			Task startupWork = new Task(() =>
 			{
-				//Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-				Task.Delay(3000);  // Simulate a bit of startup work.
-								   //Log.Debug(TAG, "Working in the background - important stuff.");
+				Task.Delay(3000);
 			});
 
 			startupWork.ContinueWith(t =>
 			{
-				//Log.Debug(TAG, "Work is finished - start Activity1.");
 				StartActivity(new Intent(Application.Context, typeof(MainActivity)));
 			}, TaskScheduler.FromCurrentSynchronizationContext());
 

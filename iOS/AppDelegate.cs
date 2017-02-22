@@ -32,8 +32,6 @@ namespace Priceless.iOS
 
 			return base.FinishedLaunching(app, options);
 
-			//var y = typeof(Xamarin.Forms.Themes.LightThemeResources);
-			var z = typeof(Xamarin.Forms.Themes.iOS.UnderlineEffect);
 		}
 	}
 }

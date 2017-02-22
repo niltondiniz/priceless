@@ -3,10 +3,13 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Util;
 using Xamarin.Forms;
 using ImageCircle.Forms.Plugin.Droid;
+using Android.Content;
+using Xamarin.Forms.Platform.Android;
+using Android.Graphics;
+using System.Threading.Tasks;
 
 namespace Priceless.Droid
 {
@@ -24,28 +27,39 @@ namespace Priceless.Droid
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			ImageCircleRenderer.Init();
 			var activity = (Activity)Forms.Context;
-			var view = activity.FindViewById(Android.Resource.Id.Content);
-
 			LoadApplication(new App());
-
-			try
-			{
-				//Snackbar.Make(view, "Aguarde carregando...", Snackbar.LengthLong).Show();
-				//await ((App)App.Current).produtoViewModel.GetProdutos();
-				//await ((App)App.Current).desejoViewModel.GetListaDesejos();
-				//await ((App)App.Current).settingsViewModel.CidadeAtual();
-				//Snackbar.Make(view, "Pronto!", Snackbar.LengthLong).Show();
-				//Snackbar.Make(view, CrossPushNotification.SenderId, Snackbar.LengthLong).Show();
-			}
-			catch (Exception e)
-			{
-				Log.Debug("X", "Exceção gerada em: {0}", e.Message);
-			}
-
-
-			//var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
-			//var y = typeof(Xamarin.Forms.Themes.LightThemeResources);
-			var z = typeof(Xamarin.Forms.Themes.Android.UnderlineEffect);
 		}
+
+		async void Share(ImageSource imageSource)
+		{
+			var intent = new Intent(Intent.ActionSend);
+			intent.SetType("image/png");
+
+			var handler = new ImageLoaderSourceHandler();
+			var bitmap = await handler.LoadImageAsync(imageSource, this);
+
+			var path = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads
+				+ Java.IO.File.Separator + "logo.png");
+
+			using (var os = new System.IO.FileStream(path.AbsolutePath, System.IO.FileMode.Create))
+			{
+				bitmap.Compress(Bitmap.CompressFormat.Png, 100, os);
+			}
+
+			intent.PutExtra(Intent.ExtraStream, Android.Net.Uri.FromFile(path));
+
+			var intentChooser = Intent.CreateChooser(intent, "Share via");
+
+			StartActivityForResult(intentChooser, 1000);
+		}
+
+		protected async override void OnResume()
+		{
+			base.OnResume();
+			await Task.Delay(10);
+
+			//do other resume things...
+		}
+	
 	}
 }

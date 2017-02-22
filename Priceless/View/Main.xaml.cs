@@ -12,16 +12,16 @@ namespace Priceless
 		{
 			InitializeComponent();
 
-			this.btnLogarFacebook.Clicked += async (sender, e) =>
+			this.btnLogarFacebook.Clicked += (sender, e) =>
 			{
 				((App)App.Current).tipoAuth = "facebook";
-				await this.Navigation.PushAsync(new Login());
+				((App)App.Current).NavigateToLogin();
 			};
 
-			this.btnLogarGoogle.Clicked += async (sender, e) =>
+			this.btnLogarGoogle.Clicked += (sender, e) =>
 			{
 				((App)App.Current).tipoAuth = "google";
-				await ((App)App.Current).MainPage.Navigation.PushAsync(new Login());
+				((App)App.Current).NavigateToLogin();
 			};
 
 			NavigationPage.SetHasBackButton(this, false);

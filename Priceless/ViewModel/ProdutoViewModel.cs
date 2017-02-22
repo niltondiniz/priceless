@@ -6,9 +6,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Plugin.Connectivity;
-using Plugin.Geolocator;
 using Xamarin.Forms;
 
 namespace Priceless
@@ -31,6 +28,9 @@ namespace Priceless
 		private string _imagemSupermercado;
 		private string _filtro;
 		private string _filtroSupermercado;
+
+		public Command Share { get; set; }
+		public ImageSource Source { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void OnPropertyChanged(string nome)
@@ -276,7 +276,14 @@ namespace Priceless
 
 		public ProdutoViewModel()
 		{
+			Share = new Command(ShareCommand);
+		}
 
+		void ShareCommand()
+		{
+			Image img = new Image();
+			img.Source = "https://static.adzerk.net/Advertisers/33d63a87eb0144dbb2039b21b8d72587.png";
+			MessagingCenter.Send<ImageSource>(img.Source, "Share");
 		}
 	}
 }
