@@ -7,7 +7,7 @@ namespace Priceless.iOS
 {
 	public class CloseApplication : ICloseApplication
 	{
-		public void closeApplication()
+		void ICloseApplication.CloseApplication()
 		{
 			Thread.CurrentThread.Abort();
 		}

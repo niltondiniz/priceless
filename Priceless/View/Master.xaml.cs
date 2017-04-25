@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -18,9 +17,10 @@ namespace Priceless
 			bool resposta = await DisplayAlert("Deseja sair do aplicativo?", "Confirmação", "Sim", "Não");
 			if (resposta)
 			{
-				((App)App.Current).settingsViewModel.DeleteAll<Settings>();
-				((App)App.Current).settings = null;
-				((App)App.Current).NavigateToHome();
+				((App)App.Current).settingsViewModel.Delete<SettingsModel>(((App)App.Current).settings);
+				DependencyService.Get<ITools>().LogoutFromFacebook();
+				DependencyService.Get<ICloseApplication>().CloseApplication();
+
 			}
 		}
 	}

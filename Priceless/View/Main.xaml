@@ -1,5 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage NavigationPage.HasNavigationBar="false" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Priceless.Main" BackgroundImage="fundo_login.png">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage NavigationPage.HasNavigationBar="false" 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="Priceless.Main" 
+		BackgroundImage="fundo_login.png"
+		xmlns:xamarinNativeFacebook="clr-namespace:Priceless;assembly=Priceless"
+		>
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical" VerticalOptions="Start">
 			<StackLayout VerticalOptions="Start">
@@ -9,6 +15,7 @@
 			<StackLayout Orientation="Vertical" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,80,50,0">
 				<Button HeightRequest="50" BackgroundColor="#3b5998" Image="facebook.png" TextColor="White" x:Name="btnLogarFacebook" FontSize="12" Text="Login com Facebook" />
 				<Button HeightRequest="50" BackgroundColor="#FFCC66" Image="google.png" TextColor="White" x:Name="btnLogarGoogle" FontSize="12" Text="Login com Google" />
+				<xamarinNativeFacebook:FacebookLoginButton BackgroundColor="Navy"  WidthRequest="240" Text="Facebook Login"  TextColor="White"  HorizontalOptions="Center"></xamarinNativeFacebook:FacebookLoginButton>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

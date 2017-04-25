@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
@@ -140,21 +140,47 @@ namespace Priceless
 		public void Gravar()
 		{
 			if (((App)App.Current).settings != null)
-				this.Insert<Settings>(((App)App.Current).settings);
+				this.Insert<SettingsModel>(((App)App.Current).settings);
 			else
-				this.Update<Settings>(((App)App.Current).settings);
+				this.Update<SettingsModel>(((App)App.Current).settings);
 		}
 
 		public async Task CidadeAtual()
 		{
 			try
 			{
-				dynamic gpsResult = JObject.Parse(await GpsLocation.GetCurrentLocation());
-				((App)App.Current).settingsViewModel.City = gpsResult.results[0].address_components[3].long_name;
+				string json = await GpsLocation.GetCurrentLocation();
+				JObject gpsResult = JObject.Parse(@json);
+				((App)App.Current).settingsViewModel.City = json;
+
+				string dados = (string)gpsResult["results"][0]["address_components"][3]["long_name"];
+				((App)App.Current).settingsViewModel.City = dados;
+
+				/*
+				foreach (var obj in gpsResult)
+				{
+					var data = obj["results"]
+					{
+						string token = obj.Value.ToString();
+						dynamic cidade = JArray.Parse(token);
+
+						foreach(var addressComponent in cidade)
+						{
+							var tipo = addressComponent["address_components"][0]["types"][0];
+
+							if (tipo.Value.ToString() == "locality")
+							{
+								var cid = addressComponent["address_components"][0]["long_name"];
+								((App)App.Current).settingsViewModel.City = cid.Value.ToString();
+							}
+
+						}
+					}
+				}*/
 			}
-			catch
+			catch(Exception e)
 			{
-				((App)App.Current).settingsViewModel.City = "Local Desconhecido";
+				((App)App.Current).settingsViewModel.City = "Local Desconhecido" + e.Message;
 			}
 
 

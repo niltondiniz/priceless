@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>Priceless</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.dz.priceless.priceless</string>
+	<string>com.dz.priceless</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -35,6 +35,7 @@
 				<string>fb725451004148227</string>
 			</array>
 		</dict>
+		<dict/>
 	</array>
 	<key>FacebookAppID</key>
 	<string>725451004148227</string>
@@ -66,11 +67,26 @@
 	<false/>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>NsLocationAlwaysUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Localization</string>
 	<key>Custom Property</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fbapi20130214</string>
+		<string>fbapi20130410</string>
+		<string>fbapi20130702</string>
+		<string>fbapi20131010</string>
+		<string>fbapi20131219</string>
+		<string>fbapi20140410</string>
+		<string>fbapi20140116</string>
+		<string>fbapi20150313</string>
+		<string>fbapi20150629</string>
+		<string>fbauth</string>
+		<string>fbauth2</string>
+		<string>fb-messenger-api20140430</string>
+		<string>fb-messenger-api</string>
+	</array>
 </dict>
 </plist>

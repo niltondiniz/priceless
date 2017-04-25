@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+//using System.Diagnostics;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
 
@@ -19,13 +19,13 @@ namespace Priceless
 																		 position.Latitude.ToString().Replace(",", "."),
 																		 position.Longitude.ToString().Replace(",", ".")));
 				return dados;
-				Debug.WriteLine("Position Status: {0}", position.Timestamp);
-				Debug.WriteLine("Position Latitude: {0}", position.Latitude);
-				Debug.WriteLine("Position Longitude: {0}", position.Longitude);
+				//Debug.WriteLine("Position Status: {0}", position.Timestamp);
+				//Debug.WriteLine("Position Latitude: {0}", position.Latitude);
+				//Debug.WriteLine("Position Longitude: {0}", position.Longitude);
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine("Unable to get location, may need to increase timeout: " + ex);
+				//Debug.WriteLine("Unable to get location, may need to increase timeout: " + ex);
 				return "";
 			}
 		}

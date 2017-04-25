@@ -4,8 +4,8 @@ using Xamarin.Forms;
 
 namespace Priceless
 {
-	[Table("settings")]
-	public class Settings : ModelBase
+	[Table("settingsmodel")]
+	public class SettingsModel : ModelBase
 	{
 
 		[PrimaryKey, AutoIncrement]
@@ -51,12 +51,12 @@ namespace Priceless
 			set { SetValue(value); }
 		}
 
-		public Settings()
+		public SettingsModel()
 		{
 
 		}
 
-		public Settings(string _accessToken, DateTime _expirinDate, string _name, string _email, string _imagem, DateTime _birthDay)
+		public SettingsModel(string _accessToken, DateTime _expirinDate, string _name, string _email, string _imagem, DateTime _birthDay)
 		{
 			this.AccessToken = _accessToken;
 			this.ExpirinDate = _expirinDate;

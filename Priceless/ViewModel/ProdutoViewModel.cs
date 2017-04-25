@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
+//using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -270,7 +270,7 @@ namespace Priceless
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine(e.Message);
+				//Debug.WriteLine(e.Message);
 			}
 		}
 

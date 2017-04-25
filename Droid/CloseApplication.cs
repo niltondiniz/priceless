@@ -7,7 +7,7 @@ namespace Priceless.Droid
 {
 	public class CloseApplication : ICloseApplication
 	{
-		public void closeApplication()
+		void ICloseApplication.CloseApplication()
 		{
 			var activity = (Activity)Forms.Context;
 			activity.FinishAffinity();

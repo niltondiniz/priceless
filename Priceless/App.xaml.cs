@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Xamarin.Forms;
 using System.Threading.Tasks;
@@ -14,8 +14,9 @@ namespace Priceless
 		public ProdutoCompraViewModel produtoCompraViewModel;
 		public DesejoViewModel desejoViewModel;
 		public SettingsViewModel settingsViewModel;
-		public Settings settings { get; set; }
+		public SettingsModel settings { get; set; }
 		public Page mainNavigation { get; set; }
+		public static Action<string> PostSuccessFacebookAction { get; set; }
 
 		public void HideLoginView()
 		{
@@ -35,8 +36,9 @@ namespace Priceless
 
 		public void NavigateToLogin()
 		{
-			if (mainNavigation != null)
-				mainNavigation.Navigation.PushAsync(new Login());
+			//if (mainNavigation != null)
+			//mainNavigation.Navigation.PushAsync(new Login());
+			MainPage = new Login();
 		}
 
 		public void NavigateToHome()
@@ -50,7 +52,7 @@ namespace Priceless
 
 		}
 
-		public void NotificaSettings(Settings _settings)
+		public void NotificaSettings(SettingsModel _settings)
 		{
 			if (_settings != null)
 			{
@@ -71,7 +73,7 @@ namespace Priceless
 			produtoCompraViewModel = new ProdutoCompraViewModel();
 			desejoViewModel = new DesejoViewModel();
 			settingsViewModel = new SettingsViewModel();
-			settings = new Settings();
+			settings = new SettingsModel();
 
 			Resources = new ResourceDictionary();
 			Resources.Add("primaryPink", Color.FromHex("E91E63"));
@@ -79,16 +81,25 @@ namespace Priceless
 
 			try
 			{
-				settings = settingsViewModel.GetLista<Settings>()[0];
+				var lstSettings = settingsViewModel.GetLista<SettingsModel>();
+				if(lstSettings.Count > 0)
+				{
+					settings = lstSettings[0];	
+				}
+
+				if (settings.AccessToken != null)
+				{
+					NavigateToHome();
+				}
+				else
+				{
+					NavigateToLogin();	
+				}
 			}
 			catch
 			{
 				settings = null;
 			}
-
-			NavigateToHome();
-
 		}
-
 	}
 }

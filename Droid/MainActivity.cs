@@ -10,56 +10,41 @@ using Android.Content;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
 using System.Threading.Tasks;
+using Xamarin.Facebook;
+using Java.Lang;
+using Xamarin.Facebook.Login;
 
 namespace Priceless.Droid
 {
 	[Activity(Label = "Priceless.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-			  ScreenOrientation = ScreenOrientation.Portrait)]
+	          ScreenOrientation = ScreenOrientation.Portrait),MetaData("com.facebook.sdk.ApplicationId", Value = "@string/app_id")]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
-		protected override async void OnCreate(Bundle savedInstanceState)
+
+		public static ICallbackManager CallbackManager;
+
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
 			base.OnCreate(savedInstanceState);
-
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			ImageCircleRenderer.Init();
 			var activity = (Activity)Forms.Context;
+
+			FacebookSdk.SdkInitialize(this.ApplicationContext);
+			CallbackManager = CallbackManagerFactory.Create();
+
+			//LoginManager.Instance.RegisterCallback(mCallbackManager, this);
 			LoadApplication(new App());
+
 		}
 
-		async void Share(ImageSource imageSource)
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			var intent = new Intent(Intent.ActionSend);
-			intent.SetType("image/png");
-
-			var handler = new ImageLoaderSourceHandler();
-			var bitmap = await handler.LoadImageAsync(imageSource, this);
-
-			var path = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads
-				+ Java.IO.File.Separator + "logo.png");
-
-			using (var os = new System.IO.FileStream(path.AbsolutePath, System.IO.FileMode.Create))
-			{
-				bitmap.Compress(Bitmap.CompressFormat.Png, 100, os);
-			}
-
-			intent.PutExtra(Intent.ExtraStream, Android.Net.Uri.FromFile(path));
-
-			var intentChooser = Intent.CreateChooser(intent, "Share via");
-
-			StartActivityForResult(intentChooser, 1000);
+			base.OnActivityResult(requestCode, resultCode, data);
+			CallbackManager.OnActivityResult(requestCode, (int)resultCode, data);
 		}
-
-		protected async override void OnResume()
-		{
-			base.OnResume();
-			await Task.Delay(10);
-
-			//do other resume things...
-		}
-	
 	}
 }

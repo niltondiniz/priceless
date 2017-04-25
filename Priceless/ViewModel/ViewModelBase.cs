@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
@@ -19,7 +19,7 @@ namespace Priceless
 			var config = DependencyService.Get<IConfig>();
 			_conexao = new SQLite.Net.SQLiteConnection(config.Plataforma, System.IO.Path.Combine(config.DiretorioDB, "bancodados3.db3"));
 			_conexao.CreateTable<ProdutoCompra>();
-			_conexao.CreateTable<Settings>();
+			_conexao.CreateTable<SettingsModel>();
 		}
 
 		public void Insert<T>(object objeto)
